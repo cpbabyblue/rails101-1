@@ -28,14 +28,18 @@ end
      else
        render :new
      end
-     
+
   end
 
 def update
   @group = Group.find(params[:id])
-  @group.update(group_params)
 
-  redirect_to groups_path, notice: "update successfully"
+  if @group.update(group_params)
+
+    redirect_to groups_path, notice: "update successfully"
+  else
+     render :edit
+  end 
 
 end
 
